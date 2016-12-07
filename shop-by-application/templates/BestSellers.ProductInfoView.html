@@ -1,0 +1,73 @@
+<div class="item-wrapper" data-selenium="itemDetail" itemscope itemtype="http://schema.org/Product" >
+        <div data-selenium="img-zone" class="image-container">
+        	<a href='<%- getProductLink() %>' data-selenium="itemImg"><img data-selenium="imgLoad" src="<%- getImageSrc() %>" itemprop="image" alt='<%- getImageAlt() %>'/></a> 
+        </div>
+        <div class="product-name-container">
+        	<h3 data-selenium="itemHeading" title='<%-getProductName()%>'> <a href="<%- getProductLink() %>" data-selenium="itemHeadingLink" itemprop="url"> <span itemprop="brand"><%= brand %></span> <span itemprop="name"><%= shortDescription %></span> </a> </h3>
+      	</div>
+   
+        <div class="conversion-zone" data-selenium="conversion-zone">
+          <div class="price-zone " data-selenium="price-zone">
+            <div class="prices js-prices" data-selenium="prices"> </div>
+            <div class="js-atc-price" data-selenium="addToCartPrice">
+              <div class="atc-price " data-selenium="addToCartPrice">
+                <p data-selenium="finalPrice" class="clearfix final-price"> <span class="youpay" data-selenium="youpayPrice">You Pay: </span> <span data-selenium="price" class="price"><%= getPrice() %> </span> </p>
+              </div>
+            </div>
+            <div class="atc-zone clearfix" data-selenium="addToCartZone">
+              <div class="rebatesCont js-rebatesCont" data-selenium="rebatesCont">
+              <%if(hasSavings()){ %>
+                <div class="clearfix">
+                  <p class="saving-message"><span><%= getSavingsMessage() %></span></p>
+                </div>
+              <% } %>
+                <%if(hasFreeItems() || showInstantRebate=="Y"){ %>                	
+					<div class="rebateLinks clearfix">
+                    <% if(hasConditionalRebates()){ %>
+                    	<span class="conditional-rebates-link">
+                        	<span class="opener">+</span> <a href="<%- getConditionalRebatesLink() %>" class="openInOnePopupLayer" data-selenium="rebatesAvailable">Conditional Rebates</a>
+                        </span>
+                    <% } %>
+                    <% if(hasRegularRebates()){ %>
+                    	<span class="regular-rebates-link">
+                        	<span class="opener">+</span> <a href="<%- getRegularRebatesLink() %>" class="openInOnePopupLayer" data-selenium="rebatesAvailable">Rebates Available</a>
+                        </span>
+                    <% } %>
+                    <% if(hasRewards()){ %>
+                    	<span class="rewards-link">
+                        	<span class="opener">+</span> <a href="<%- getRewardsLink() %>" class="openInOnePopupLayer" data-selenium="rebatesAvailable">Receive <%= rewards %>% Reward</a>
+                        </span>
+                    <% } %>
+                    <% if(hasFreeItems()){ %>
+						<div>
+                        	<span class="includesFreeLink">
+                        		<span>+</span>
+                                <a href="javascript:void(0)" class="js-popover" data-popover-container=".<%- getFreeItemsPopoverContainerClass() %>">Includes free item(s)</a>
+							</span> 
+                            <span class="incldsFreeVal">Value <%= getFreeItemsValue() %></span> 
+                            <div class="<%- getFreeItemsPopoverContainerClass() %>" style="display:none;">
+                                <div class="content">
+                                    <ul class="includesFree">
+                                        <%_.each(getFreeItems(),function(item){%>
+                                            <li><%= item.ItemDescription %></li>
+                                        <% }) %>
+                                    </ul>
+                                    <span class="free-items-value">Value <%= getFreeItemsValue() %></span> 
+                                </div>
+                            </div>
+						</div>
+                    <% } %><!-- showIncludesFree -->
+                        
+                    </div>
+                <% } %>
+              </div>
+              <div data-region='add-to-cart-button'></div>
+            </div>
+          </div>
+        </div>
+        <!-- /conversion-zone -->
+
+    </div>
+    <!-- end .item -->
+</div>
+

@@ -1,0 +1,107 @@
+<section id="saveForLaterModule" class="ng-cloak">
+	<div ng-controller="displayItemsController as savedItems" ng-show="savedItems.isModuleVisible">
+		<div class="header-container">
+			<h2><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#backInTime"></use></svg> Saved for Later</h2>
+			<p>Stash ideas here, commitment-free!</p>
+		</div><!--  /header-container -->
+ 	
+	 	<div class="items-container" ng-show="savedItems.data.items.length > 0">
+			<div class="item-details" ng-repeat="item in savedItems.data.items">
+				<item-details ng-model="item"></item-details>
+			</div>
+		</div><!--  /items-container -->
+	 	<div class="no-items-container" ng-show="savedItems.data.items.length < 1">
+	 		<span>Any items you "Save for Later" will appear here</span>
+	 	</div>
+ 	</div>
+</section>
+<!--  /saveForLaterModule -->
+
+<script type="text/ng-template" id="itemDetails.tpl">
+	<div class="table">
+		<div class="item-image">
+			<!--item image-->
+			<item-image ng-model="itemModel"></item-image>
+		</div><!-- END .item-image -->
+		<div class="table-row">
+			<div class="item-title">
+				<item-info ng-model="itemModel"></item-info>
+			</div><!-- END .table-cell.item-title -->
+			<div class="stock-msg">
+				<item-ship-info ng-model="itemModel"></item-ship-info>
+			</div>
+			<div class="item-qty">&nbsp;</div><!-- END .table-cell.item-qty -->
+			<div class="item-price">
+				<span>{{ templateHelper.getPrice() }}</span>
+			</div><!-- END .table-cell.item-price -->
+		</div>
+		<div>
+			<item-ctas-container ng-model="itemModel" class="item-ctas-container"></item-ctas-buttons>
+		</div>
+	</div><!-- END .item-details > .table -->
+
+</script><!-- /item-details-template -->
+<script type="text/ng-template" id="itemDetails.itemImage.tpl">
+	<span class="itemImg" data-selenium="itemImg">
+		<a data-selenium="smallImgLink" href="{{ templateHelper.getDetailsUrl() }}"><img alt="{{ templateHelper.getImageAltValue() }}" border="0" data-selenium="smallImgItemLink" src="{{ templateHelper.getImage() }}"></a>
+	</span> <!--end item image-->
+</script>
+<script type="text/ng-template" id="itemDetails.itemInfo.tpl">
+	<a class="itemName underline-on-hover c31 bold fs16" data-selenium="itemName" href="{{ templateHelper.getDetailsUrl() }}">
+		<span class="cName">{{ templateHelper.getBrand() }}</span><!--end product comany name-->
+		 {{ templateHelper.getProductName() }}
+	</a>
+	<p class="productNumbers c9 fs12"><span ng-bind-html="templateHelper.getProductNumbers()"></span></p>
+	<!-- Start if item has free item -->
+	<div ng-show="templateHelper.hasFreeItems()" class="includes-free fs14">
+		<span class="js-includes-free c5 underline cursor-pointer">Includes free item(s):</span> 
+		<ul class="js-includes-free-items">
+			<li ng-repeat="freeItem in templateHelper.getFreeItems()">{{ freeItem.ItemDescription }}</li>
+		</ul>
+		{{ templateHelper.getFreeItemLabel() }}: <span class="c7">{{ templateHelper.getFreeItemValue() }}</span>
+	</div>
+	<!-- End if item has free item -->
+	<!-- Shipping Message -->
+	<p class="frshpng" data-selenium="freeShipping">
+		<a class="openInNewOnePopupLayer bold c1 infoBlack" href="{{ templateHelper.getFreeShippingLink() }}" ng-bind-html="templateHelper.getFreeShippingDescription()"></a>
+	</p>
+
+	<div class="rewardPoints " data-selenium="rewardPoints" ng-show="templateHelper.hasRewardPoints()">
+		<a data-selenium="rewardPointDetails" class="rewardPointDetails c5 openInOnePopupLayer underline-on-hover" rel="rewardPoints" alt="Reward Points Details" href="{{ templateHelper.getRewardsLink() }}" ng-bind-html="templateHelper.getRewardsMessage()"></a>
+		<span class="c1">{{ templateHelper.getRewardsShipmentMessage() }}</span>
+	</div>
+
+</script>
+<script type="text/ng-template" id="itemDetails.itemShipInfo.tpl">
+	<div class="c41">
+		<span ng-show="templateHelper.isInStock()" class="c29 fs16 bold" data-selenium="inStock">{{ templateHelper.getStockMessage() }}</span></p>
+		<span ng-show="!templateHelper.isInStock()" class="c33 fs16 bold notStock" data-selenium="notStock" >{{ templateHelper.getStockMessage() }}</span>
+		<div class="fs11">
+			<span class="scShipTime js-scShipTime" data-selenium="commentShipTime">
+				<span ng-show="!templateHelper.hasCommentDescription()">
+				{{ templateHelper.getShipTimeMessage() }} 
+				</span>
+
+				<span ng-show="templateHelper.hasCommentDescription()" class="scPopup c31">
+					{{ templateHelper.getShipTimeMessage() }} &nbsp;<span class="ship-time-popover-opener js-popover c31" data-popover-content-container=".js-scLongDescription" data-trigger="hover" data-animation="true"></span>
+				</span>
+
+				
+				<div class="js-scLongDescription" style="display:none;">
+					<div class="fs11" style="width:350px;" ng-bind-html="templateHelper.getShipTimeComments()">
+					</div>
+				</div>
+			</span>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="itemDetails.itemCTAs.buttons.tpl">
+	<a class="remove-saved-item js-remove-saved-item" data-selenium="saveForLaterRemoveLink" href="javascript:void(0);">
+		<svg>
+			<use xlink:href="#trash-can" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+		</svg> <span>Remove</span>
+	</a>
+	<a class="move-to-wishlist js-move-saved-item-to-wishlist" data-selenium="saveForLaterItemMoveToWishlist" href="javascript:void(0);"><span>Move to Wish List</span></a>
+	<span class="btn move-to-cart js-move-saved-item-to-cart" data-selenium="saveForLaterItemMoveToCart">Move to Cart</span>
+</script>

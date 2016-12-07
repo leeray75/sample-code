@@ -1,0 +1,28 @@
+<div class="contact-column">
+	<h4>Speak to an Expert</h4>
+    <div class="text-container">
+    	<%= getText() %>
+    </div>
+    <div class="bottom-content clearfix">
+    	<div class="experts-images clearfix"></div>
+        <div class="buttons-container">
+            <ul class="buttons-list clearfix">
+                <li><a href="<%- getChatLink() %>" data-selenium="liveChat" class="button chat-link overlay-on-hover" target="livechat"><svg><use xlink:href="#chat-square"></use></svg> <span class="label">Live Chat</span></a></li>
+                <li><a href="<%- getEmailLink() %>"  data-selenium="emailUs" target="_self" class="button email-link overlay-on-hover"><svg><use xlink:href="#envelope-light"></use></svg> <span class="label">Email Us</span></a></li>
+                <li><a href="<%-getTelephoneLink() %>" data-selenium="phoneNumber" class="button phone-number"><svg><use xlink:href="#phone"></use></svg> <span class="label"><%-getTelephoneNumber() %></span></a></li>
+                <li class="meet-our-experts-item"><a href="<%- getViewExpertsLink() %>"  data-selenium="meetOurExperts" target="_self" class="button view-experts-link overlay-on-hover"><svg>
+						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<g transform="translate(-1043.000000, -607.000000)">
+								<g transform="translate(1045.132599, 609.000000)">
+									<path d="M7.3330051,23.6842105 L1.31578947,17.6787221 L9.34656173,13.7383894 C9.34656173,13.7383894 8.17970702,11.5454076 7.79271012,9.99742002 C7.40571321,8.44943241 7.40571348,6.77244582 8.17970729,5.2244582 C8.9537011,3.67647059 10.3209868,3.2894737 12.2431743,3.28947368 C14.1653619,3.28947367 15.1397875,3.69992484 16.0545075,5.22445814 C16.9692274,6.74899144 17.0219997,7.89825513 16.6643208,9.99742002 C16.3066419,12.0965849 14.8348809,13.7383898 14.8348809,13.7383898 L22.1356367,18.0921053 C22.1356367,18.0921053 23.1224788,19.4078947 17.8593209,23.0263158 C12.596163,26.6447368 7.3330051,23.6842105 7.3330051,23.6842105 Z" fill="#FFFFFF"></path>
+									<circle id="Oval" stroke="#FFFFFF" stroke-width="3" cx="12.1710526" cy="12.1710526" r="12.1710526"></circle>
+								</g>
+							</g>
+						</g>
+					</svg> <span class="label">Meet Our Experts</span></a>
+                </li>
+    		</ul>
+        </div><!-- /buttons-container -->
+	</div><!-- /bottom-content -->
+</div><!-- /contact-column -->
+

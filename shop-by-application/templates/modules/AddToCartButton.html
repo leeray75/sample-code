@@ -1,0 +1,16 @@
+<% if(!inCart){ %>
+    <form class="clearfix submitToOnePopup" action="<%- getAtcFormAction() %>" method="post">
+       <input type="hidden" name="sku" value="<%= skuNo %>" data-selenium="hiddenSku">
+       <input type="hidden" name="is" value="<%= itemSource %>" data-selenium="hiddenItem">
+       <input type="hidden" name="addedTroughType" value="" data-selenium="addedThroughType">
+       <input type="hidden" name="addedTroughValue" value="" data-selenium="addedThroughValue">
+       <input type="hidden" name="page" value="1" data-selenium="hiddenPage">
+       <input type="hidden" name="outside" value="false">
+       <input type="hidden" name="q" value="1" data-selenium="qty-box" data-mq="10">
+       <button type="submit" data-selenium="submitBtn" class="addToCart blueBtn cursor-pointer pill-shaped-button fs14 one-line"><%=getAtcButtonLabel() %></button>
+    </form>
+<% }else{ %>
+    <span class="clearfix">
+    <a href="<%- getCartLink() %>" data-selenium="inCartBtn" class="inCart inc-btn  pill-shaped-button whiteBlueBtn fs14">View Cart</a>
+    </span>
+<% } %> 

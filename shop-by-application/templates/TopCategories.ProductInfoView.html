@@ -1,0 +1,54 @@
+<div class="item-wrapper">
+    <div class="image-container">
+        <img src="<%- getImageSrc() %>" alt="<%- getImageAlt() %>">
+    </div>
+    <div class="product-name-container">
+        <span class="ellipsis multiline"><%= getProductName() %></span>
+    </div>
+    
+    <div class="product-rating-container">
+    <% if(numberOfReviews>0){ %>
+        <span class="review-stars-small">
+            <%=BH.utils.templates.get('review-stars')(overAllRating)%>
+        </span>    
+        <span class="number-of-reviews"><%= numberOfReviews %></span>
+    <% } %>
+    </div><!-- /product-rating-container -->
+    <div class="product-pricing-container">
+        <% if(showInstantRebate=="Y"){ %>
+            <span class="original-price"><%= getOriginalPrice() %></span>
+        <% } %>
+        <span class="price"><%= getPrice() %></span>
+    </div>
+</div><!-- /item-wrapper -->
+<div class="hover-item item-wrapper">
+	<div class="hover-content-container">
+        <a href="<%-getProductLink() %>">
+            <div class="image-container">
+                <img src="<%- getImageSrc() %>" alt="<%- getImageAlt() %>">
+            </div>
+            <div class="product-name-container">
+                <span><%= getProductName() %></span>
+            </div>
+            <% if(numberOfReviews>0){ %>
+                <div class="product-rating-container">
+                    <span class="review-stars-small">
+                        <%=BH.utils.templates.get('review-stars')(overAllRating)%>
+                    </span>    
+                    <span class="number-of-reviews"><%= numberOfReviews %></span>
+                </div><!-- /product-rating-container -->
+            <% } %>
+            <div class="product-pricing-container">
+                <% if(showInstantRebate=="Y"){ %>
+                    <span class="original-price"><%= getOriginalPrice() %></span>
+                <% } %>
+                <span class="price"><%= getPrice() %></span>
+            </div>
+        </a>
+        <div class="cta-container">
+			<div data-region='add-to-cart-button'></div>
+			<div data-region='wish-list-widget'></div>
+        </div><!-- /cta-container -->
+	</div><!-- /hover-content-container -->
+</div><!-- /hover-item item-wrapper -->
+
